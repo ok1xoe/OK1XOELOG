@@ -5,9 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OK1XOELOG"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:HRD_My_LogbookDataSet x:Key="hRD_My_LogbookDataSet"/>
+        <CollectionViewSource x:Key="tABLE_HRD_CONTACTS_V01ViewSource" Source="{Binding TABLE_HRD_CONTACTS_V01, Source={StaticResource hRD_My_LogbookDataSet}}"/>
+    </Window.Resources>
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="26" Margin="23,23,0,0" VerticalAlignment="Top" Width="98"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="211*"/>
+            <ColumnDefinition Width="581*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="26" Margin="23,56,0,0" VerticalAlignment="Top" Width="98" Click="button_Click"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="18" Margin="23,10,0,0" TextWrapping="Wrap" Text="&#x9;&#x9;" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="18" Margin="23,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
+        <Grid x:Name="grid1" DataContext="{StaticResource tABLE_HRD_CONTACTS_V01ViewSource}" Margin="34,164,10,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="16.344"/>
+                <RowDefinition Height="15.656"/>
+            </Grid.RowDefinitions>
+            <Label Content="COL CALL:" Grid.Column="1" HorizontalAlignment="Left" Margin="2,3,0,3" Grid.Row="0" VerticalAlignment="Center" Grid.RowSpan="3"/>
+            <TextBox x:Name="cOL_CALLTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" Text="{Binding COL_CALL, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="76" Grid.RowSpan="3"/>
+        </Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="22" Margin="23,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98"/>
 
     </Grid>
 </Window>
